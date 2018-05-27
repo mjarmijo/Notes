@@ -1,0 +1,24 @@
+SSH commands
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+--------------------------------
+# how to log into an AWS machine
+ssh -i .PEMfile USER@host
+
+#-i is the identity file option, it's a PEM file. 
+#PEM files contain your private keys
+
+-------------------------------------
+# how to generate an SSHkey 
+ssh-keygen -t rsa -b 4095 -C youremailhere
+
+#-t option selects the algorithm, rsa
+#-b option selectcs the key size, 4096
+#-C option is a comment, put your email address, comments are just added to the end of the key
+
+
+---------------------------------
+
+
+3. generate a new ssh keypair locally, create a new linux user `devops_test`, add the public key to its authorized_users with correct permissions in correct location
+4. test access by ssh’ing into sandbox-devqa as devops_test user

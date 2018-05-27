@@ -1,0 +1,58 @@
+DNS NOTES and DNS ZONE FILE NOTES
+
+-Domain Name System
+
+-decentralized, hierarchical system for naming computers, services and resources connected to the internet. An address book for the internet.
+
+-Translates domain names to IP addresses needed for identifying computers and devices on on the internet. 
+
+-Worldwide distributed directory service. 
+
+-authoratative name servers are assigned for each domain. Network admins then delegate the subdomains to others. --> no central DB, things are distributed
+
+-Defines DNS protocol, data structures, and data communication exchanges.
+
+-part of the application layer of the internet protocol suite (https://en.wikipedia.org/wiki/Internet_protocol_suite).
+
+-The internet has two major namespaces - DNS and IP addresses. The domain name system maintains the dns hierarchy and translates between DNS and other addresses. 
+
+-Internet name servers and a communication protocol implement the Domain name system. 
+
+-DNS name server is a server that stores DNS records for a domain, a DNS name server responses with answers to queries against its database. 
+
+-Common records stored in DNS databases are SOA (Start of authority), IP A and IP AAAA addresses (A record), MX records(SMTP mail exchanges), NS (name servers, note a name server is the same thing as a DNS server), PTR (pointer/reverse DNS lookups), and CNAME(domain name aliases). 
+
+-DNS can store records for other types of data.
+
+-The database is stored in a "structured zone file", https://en.wikipedia.org/wiki/Zone_file#File_format
+
+-DNS Zone files contain resource records for a DNS zone. 
+
+-A DNS Record is a single entry that gives the zone instructions on how to handle any given request based on type. 
+
+-A DNS zone is a subset, often a single domain, of the hierarchical domain name structure of the DNS, A DNS Zone is like a container of all the DNS records for a specific domain and only that domain. For example: pressable.com, www.pressable.com, blog.pressable.com, and mail.pressable.com are four DNS Records inside a single DNS Zone for pressable.com.
+
+-Each line in a dns zone file is defines a single resource record. The fields in a resource record are:
+
+name = may be left blank, if so the record inherits name from previous record.
+
+ttl = time to live, time after which the domain name client must discard the record and obtain fresh info. If ttl is blank then global TTL at top of the file is used. 
+
+record class = namespace of the record, the most common namespace is IN (the internet), but others exist. 
+
+record type = abbreviation for the type of information stored in `record data`. Also provides the type of each record, A, AAAA, MX, SMTP, CNAME, etc. 
+
+record data = one or more information elements depending on the record type. Address (A or AAAA) records require only an address, whicle mail exchanger (MX) records require a priority level and a domain name.  Such information is separated by white space. 
+
+-the zone file must specify the Start of Authority (SOA) record with the name of the authoritative master name server for the zone and the email address of someone responsible for management of the name server. 
+
+-Domain registrars - place where you purchase/obtain the domain name. These companies often deal directly with the registry operators who control the master list of all domain names. These registries are managed by IANA (International Assigned Numbers Authority) which is a department of ICANN, a nonprofit organizations that runs the root zone management in the Domain Name System.\
+
+nce you’ve purchased your domain name, you have to tell it which domain name servers will be authoritative for that domain. A DNS hosting provider hosts these servers, which authoritatively respond for your domain. Sometimes domain registrars also offer DNS hosting, however the two services should never be confused.
+
+-Nameservers - identify what set of servers any request should reference in order to obtain a domain's DNS records. 
+
+
+star (* wildcard) - The * symbol can be used as the name for a DNS record. This symbol is used as an indicator that the record named * should be used in place of any record that isn’t specified. These can be used when you would like to direct subdomains that do not exists somewhere where they can be accounted for or handled. This means that you can specify where you would like to send all traffic for subdomain that do not exist as a DNS record or that you might not expect people to visit. You could consider the * symbol to be the DNS record “for everything else.”
+
+

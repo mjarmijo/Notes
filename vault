@@ -1,0 +1,52 @@
+
+
+vault - 
+Has secrets, need to use vault client to access
+
+
+vault token on vault-prod.vanare.com: d5f2e9a3-33b4-ca25-1ba2-7741e48b4b1e
+
+useful commands:
+which vault
+
+#create the vault token -- not always used. 
+vault token-create
+
+# where is vault accessing, this tells you. 
+echo $VAULT_ADDR - variable 
+
+# set the $VAULT_ADDR Variable like this:
+export VAULT_ADDR="https://vault-prod.vanare.com:8443"
+
+export VAULT_ADDR="https://vault-uat.vanare.com:8443"
+
+
+# checks status of the vault, but still need to verify I have access
+vault status
+
+#Authorize myself to use vault, this will ask us for the token
+vault auth
+
+# this command writes to the home directory of the current user
+# don't need to do this step if the machine already has a vault token in the user home directory
+
+# verify access, will not work unless you have a token
+vault list secret
+
+vault list secret/vanare/rabbitmq
+
+vault read secret/vanare/rabbitmq
+
+always to create a new token
+
+DELETE THE .vault-token in centos home dir
+
+--------------------------------------------------
+
+
+Token: b1bfeb7a-2907-b5e1-51bb-867016de15ef
+Vault Address: https://vault-prod.vanare.com:8443
+
+secret word: secure2
+https://vault1.vanare.com/view/2760c1de83b863f6ff38cca165d3d10f
+

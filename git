@@ -1,0 +1,51 @@
+https://github.com/mjarmijo/jenkins.git
+
+Git commands
+
+# First time git setup
+git  config --global user.name "myname"
+git config --global user.email "myemail"
+
+git config --list
+
+git help <verb>
+
+# git basics
+
+# do this to initialize a directory
+git init
+
+# updates local git with changes from remote git 
+git pull
+
+# adds files to version control
+git add myfile
+
+# commit with notes
+git commit -m 'myfile description'
+
+# clones the site
+git clone mywebsite
+
+# compare differences between commits
+git diff --staged
+
+# changes to the repository
+git status
+git rm
+git mv fiel_from file_too
+git log
+git log -p
+
+# after making changes with commit, need to push the updates to github
+git remote -v 
+git push remote_server commitgit
+
+# git commit 
+git commit -a -m "changed pkamaris password"
+# -a commits all in the current directory 
+
+
+git checkout -- deploy.php
+
+

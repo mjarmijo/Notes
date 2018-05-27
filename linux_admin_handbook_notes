@@ -1,0 +1,127 @@
+Linux Administrator Handbook Notes
+
+-Purpose
+orientation to linux/unix, explains administrative systems
+quick reference handbook
+focus on admin of servers and networks
+
+-1.1 Essential duties of a sysadmin
+controlling access
+adding hardware
+automating tasks
+overseeing backups
+install and upgrade software
+monitoring
+troubleshooting
+maintaining local documentation
+security
+tuning performance
+developing site policies
+working with vendors
+firefighting
+
+-1.2
+learn expect "language", https://en.wikipedia.org/wiki/Expect
+works as a front end to drive interactive programs
+efficient glue to replace complex scripts
+ch 7 summarizes info on bash and ruby scripts
+
+-1.3 & 1.4 Linux distributions
+Debian - one of the oldest, free, community developed
+Ubuntu - based on debian
+Redhat linux - most successful open source company, have to pay for license
+Fedora - testing grounds for redhat
+CentOS - free and identical to redhat, often used together in prod
+FreeBSD - UNIX heritage, used by FANG, a complete OS not just a kernel
+
+-1.5 Notation
+bold = commands
+italics = placeholders
+anything betwen [] is optional
+anything followed by ... can be repeated
+curly braces {} mean that you should select one of the itmes separated by vertical bars | 
+* = match 0 or more characters
+? = match one character
+~ = home directory, ~user = home directory of user
+
+-1.6 Units
+kilobit, mega, giga all refer to power of 2, 1 megabyte memory is 2^20 bytes
+Ram is always in powers of 2, but network bandwith is powers of 10. 
+
+-1.7 Man pages
+man command
+man htop
+man -k keyword or apropos keyword print a list of man pages that have the keyword in their one line synopsys
+Sections of the man pages:
+1 User level commands and applications
+2 System calls and kernal error codes
+3 Library calls
+4 Device drivers and network protocols
+5 standard file formats
+6 games and demos 
+7 Misc files and documentation
+8 System administration commands
+9 Obscure kernel specs and interfaces
+
+-1.8 Authoritative documentation
+Debian - debian.org/doc
+Ubuntu - help.ubuntu.com
+Red Hat - redhat.com/docs
+CentOS - wiki.centos.org
+Free BSD - freebsd.org/docs.htm
+
+Must read books -
+pro git
+the dev ops handbook: how to create world class agility reliability and security 
+The practice of system and network administration - maintain a blog at everythingsysadmin.com
+The practice of cloud system administration
+Linux command line and shell scripting bible
+Sed and Awk  - text processors
+The hacker playbook 2: practical guide to penetration testing
+Practical Vim: edit text at the speed of thought
+The linux command line: a complete introduction 
+Automate the boring stuff with python: practical programming for total beginners. 
+
+-1.9 Other sources for reading
+motto: When you get stuck, search the web. 
+keep up to date - 
+darkreading.com - security news, trends, discussion
+devopsreactions.tumblr.com - sysadmin humor
+linux.com - linux foundation site
+linuxfoundation.org - 
+lwn.net - high quality timeley articles on linux
+lxer - linux news aggregator
+securityfocs.com vulnerability reports and security related mailing lists
+@swiftonsecurity - infosec opinion from taylor swift
+@nixcraft - tweets about linux and unix admin
+everythingsysadmin.com - blog of Thomas Lioncellin
+sysadvent.blogspot.com - advent for systeem admins
+oreilly.com/topics - learning resources from oreilly on many topics
+schneier.com - blog of bruce schneier privacy and security expert. 
+everythingsysadmin.com
+
+Task- specific forums and reference
+digitalocean.com - tutorials on many oss development and sysadmin topics
+serverfault.com - database of sysadmin questions
+servers for hackers.com - high quality videos, forums, and articles on admin 
+
+-1.10 Ways to find and install software
+Conferences for sysadmins - list of many 
+which command - determine if software is already installed
+whereis command - searches a broader range of directories 
+locate filename - more search 
+curl and wget are often used to download packages. 
+Never pipe curl commands striaght to the shell.
+Always save the script to a temp file and run the scrip after the download completes
+
+1.11 & 1.12 Specialization and Adjacent Disciplines 
+Devops - promotes integration between operations and developers
+Site reliability engineeers - value uptime, monitoring, deploying software, taking pager tudy, and debugging outages
+Security operations engineers - search for vulnerabilities and prevent atttacks
+Network administrators - install design, configure and operate networks. 
+Database administrator - install and manage database software 
+Network operations center NOC engineers - Monitor real time health of large sites and track incidents and outages. 
+Data center technicians - 
+Architects - Deep experience, used to design distributed systems. 
+
+ 

@@ -1,0 +1,341 @@
+bash commands
+
+Tips!
+#############
+# name files by year month day, with leading 0's. easier to sort this way. If she used month names, December would come before July; if she didn’t use leading zeroes, November (‘11’) would come before July (‘7’). Similarly, putting the year first means that June 2012 will come before June 2013.
+# command > file redirects a commands output to a file 
+# first | second is a pipeline, the output of the first command is used as input for the second
+# the best way to use the shell is to use pipes to combine simple single-purpose programs (filters). 
+# If you need to refer to names of files or directories that have whitespace or another non-alphanumeric character, you should surround the name in quotes ("").
+
+# keyboard shortcuts
+#############################
+---------------------
+ctrl + z = put in background
+ctrl + c = kill
+ctrl + s = stop output
+ctrl + l = clear screen
+
+fg - put in foreground
+
+alt + b = go back one word
+alt + f = go forward one word
+
+ctrl + t = swap last 2 characters before cursor. good for typos.
+
+ctrl + w = cut word before cursor.
+ctrl + u = cut part of line before cursor. 
+ctrl + y = paste what you cut from the clipboard. 
+
+> = writes to file
+>> = writes to file and appends to file if it already exists
+| = pipe tells the shell to use the output of the command on the left as the input for the command on the right
+
+
+.. = "the directory containing this one"
+. = "the current working directory"
+- = (dash character) "the previous directory I was in", useful when moving files, brings you back like a last channel button 
+Two More Shortcuts
+~ =  (tilde) at the start of a path means “the current user’s home directory”.
+* = wildcard, matches zero or more characters
+? =  wildcard that matches on a single character 
+
+Example: p*.p?* matches anything that starts with a ‘p’ and ends with ‘.’, ‘p’, and at least one more character (since the ? has to match one character, and the final * can match any number of characters). Thus, p*.p?* would match preferred.practice, and even p.pi (since the first * can match no characters at all), but not quality.practice (doesn’t start with ‘p’) or preferred.p (there isn’t at least one character after the ‘.p’).
+
+-------------
+# matches zero or more characters in a file name, so *.txt matches all files ending in .txt
+
+? 
+--------------
+matches any single character in file name, so ?.txt matches a.txt, but not any.txt
+
+#Commands for deploy
+#####################
+Take a snapshot of the RDS instance before running dep deploy below
+
+nohup dep deploy owm-uat --revision 1bb122209d72bb9e6a12effbb76fa2800d6fb5ef  -vvv &
+
+tail -f nohup.out
+
+git checkout -- deploy.php
+
+
+#CURL commands
+################
+curl -svo /dev/null www.vj.com
+
+https://en.wikipedia.org/wiki/Null_device
+
+
+
+# navigation
+########################
+# ways to get help
+man command
+command --help
+
+whoami
+---------------
+# shows the user's current identity
+
+pwd
+------------------------
+# see the path to where you are at, print working directory
+pwd
+
+ls 
+----------
+# list contents of directory, 
+# ls -R lists directories recursively,
+# ls -t list by order of last change
+# ls -F shows directories
+# ls -lhtR list directories recursively by time of last change
+# ls -a displays hidden files, show all
+
+
+useradd
+---------------------
+# add a new user
+sudo useradd username
+
+cd
+---------------
+# change directory, cd with no arg goes back to home
+cd /home
+
+# use pwd and ls to check directory contents and path to ensure you are in the right place
+
+
+tar
+-------------
+# creates an archive/backup of the directory
+tar zcf uat.vanare.com.tar.gz uat.vanare.com/
+# creates an archive of uat.vanare.com using .gz format (zcf options)
+ 
+
+cat
+------------------------------
+# displays the contents of its input
+cat filename
+
+# create a new file and its contents on the fly
+cat > filename 
+CONTENTS
+
+less 
+--------------------------
+#  displays a screenful of the file, and then stops. You can go forward one screenful by pressing the spacebar, or back one by pressing b. Press q to quit.
+
+head/tail
+-------------
+# displays first few lines or last few lines of input, -n # to specify # of lines printed
+
+sort 
+------------
+# sorts inputs, -n is numeric sort, default is alpha
+
+
+wc
+----------------
+# counts lines, words, and characters in its input
+
+touch
+---------------
+# generates a new, blank file
+# some progs do not generate their own output, they require empty files that have been generated. Use touch to genrate files for these progs. 
+touch myfile.txt
+
+rm
+-----------------
+# removes files, 
+# use rm -r to remove directories
+# rm -i prompts to confirm every deletion 
+
+mv
+------------
+# moves and renames files, moving a file into the same directory is the same as renaming it
+# mv -i asks for confirmation
+mv thesis/oldname.txt thesis/newname.txt
+
+cp 
+---------------
+# like move, but makes an exact copy 
+
+wc
+----------
+# word count command, counts the number of lines, words and characters
+# -l option displays hte number of lines, -w words, -c characters
+
+echo
+------
+echo * = list all files in current directory
+
+grep
+-----------
+# search for strings
+# recursive grep to search all files in directory  for "content" 
+grep -ri content *
+# -ri , r = recursive, i = case insensitive, content is the word, * is all files in dir
+
+unzip
+-----------
+# unzips files
+unzip file.zip -d destination_folder
+
+
+
+--help flag (or man command_here)
+man command_here
+---------------------------------------------
+# displays more info on how to use the command or program
+ls --help
+man ls
+# b and spacebbar skip up and down, arrow keys move line y line, / followed by word/char to  search, q for quit
+
+
+ssh
+---------------------
+# good webiste tutorial: https://wiki.centos.org/HowTos/Network/SecuringSSH
+
+ssh-keygen -t rsa -b 4096 "your note (email) here"
+#generates ssh key, -t option says what kind of encryption, -b option specifies how many bytes
+
+ssh -i .ssh/ae-devops-produat.pem centos@10.1.20.211
+ssh -i .ssh/id_rsa marmijo_brandorr@10.1.20.211
+# connects to the host server using your private key for auth
+#-i option for public key followed by the path
+
+ssh-add
+# adds keys to ssh agent for easy management
+# -l option lists private keys available for agent
+
+
+mkpasswd - m sha-512
+#makes a new password hash
+# use these options mkpasswd -m sha-512 , then wait for pw prompt and paste it in
+# provision user scrips
+RUNAS=$1
+PERSONTOADD=$2
+TARGET="${3:-sandbox}"
+ENV=$4 --- this only matters for sudo access, tied to "sudo_permissions"
+KEY="${5:-~/.ssh/id_rsa}"
+
+inventory is inventory of all instances 
+./provision_users.sh centos jkonrad lma-jenkins prod ~/.ssh/ae-devops-produat.pem
+
+
+Deploys
+nohup dep deploy owm-uat --revision Revision#here -vvv &
+# deploy on UAT or Prod 
+
+
+nohup dep deploy owm-uat --revision 80e015cb1f6ad54b9eae8bec19d9bd857ba30147 -vvv &
+
+tail -f nohup.out
+
+vi
+-----------------------------
+# starts the text editor
+command mode 
+insert mode
+
+i = send you to insert, use esc to back out of editing, insert you type where the cursor is at
+
+a =  a goes to next character after where the cursor is
+
+: gives commands
+
+:wq save (w) and quit (q)
+
+
+$ = goes to end of line
+0 = goes to start of line
+
+g goes to top
+G  end of file
+
+
+u = undo
+????? = redo
+r = allows you to replace a character where the cursor is, next char you type is the replacement
+
+# regular expressions
+? = search up
+/ = search down
+n = next search item 
+
+regex
+characters search for themselves
+. = is a wildcard, any character will match
+$ = search the end of a line, abc$ 
+^ = search from the beginning of line
+* = repeated
+[] = search for characters between two characters, 
+ex. range [a-zA-Z0-9] searches for a single character
+[a-z]* - any lower case letter string
+
+.* = searches for any string
+^.*$  = any character any number of times, selects everything on every line
+
+:d = delete
+:4d = deletes fourth line
+dd =  deletes a line
+:. = current line
+
+:.,$d = deletes from cursor to end of line 
+
+:1,.d = deletes from first line to where cursor is at 
+
+:1,$d = deletes everything 
+
+:1,$s/dfe/abc/g
+
+
+
+Globbing (bash, not vi)
+-------------
+for file names, replaces argument with matching file names
+similar to regex, 
+echo *.txt to list all text files
+* MEANS every file in current directory, star substitutes every file name in current directory
+find every file in directories under the currend directory that end in .c
+
+. is current directory
+~ = subsitutes in your home directory
+
+ls -l */*.c
+
+find = different than ls, search for a specific filename or time of modification, output is a list of file names
+
+find .
+
+# find name .pem in current directory and print it
+find . -name "*.pem" -print
+
+#
+find . -name "*.pem" -exec chmod 600 {} \;
+
+double quotes and single quotes are different
+
+\
+
+
+
+#how to save
+------------------
+:w = saves to current file name
+:w newfilename 
+
+rm -i myfile = removes with a confirmation
+
+
+difference btw executible vs shell script
+source code
+object code
+
+/bin/true = executible file, took source code from C, did a command "gcc filename -o true", takes source code, complies it into assembly language, and makes it executable. 
+
+interpreter - takes what you tell it and runs it directly with no compilation step, slower, 
+
+compiled language - take what you type, turn it into computer code, faster
+
