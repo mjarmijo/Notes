@@ -1,4 +1,5 @@
-https://github.com/mjarmijo/jenkins.git
+https://github.com/mjarmijo/notes
+https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
 
 Git commands
 
@@ -29,6 +30,7 @@ git clone mywebsite
 
 # compare differences between commits
 git diff --staged
+git diff
 
 # changes to the repository
 git status
@@ -38,8 +40,16 @@ git log
 git log -p
 
 # after making changes with commit, need to push the updates to github
-git remote -v 
+git remote add <remote name> <remote url>
+
+git remote -v #shows you the urls
+git remote show origin #origin details
+
+git push <remote_name> <branch> 
 git push remote_server commitgit
+
+
+
 
 # git commit 
 git commit -a -m "changed pkamaris password"
