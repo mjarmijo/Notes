@@ -1,0 +1,37 @@
+ ##################################
+ # software carpentry scratch
+ ##################################
+pwd
+/g/My Drive/devops learning/software_carpentry/data-shell/molecules
+
+# counts the numbers of words in the files, sorts them numerically, saves them 
+ wc -l *.pdb | sort -n > sorted.txt
+
+
+f we run wc -l *.pdb | sort -n instead, the shell creates two processes (one for each process in the pipe) so that wc and sort run simultaneously. The standard output of wc is fed directly to the standard input of sort; since there’s no redirection with >, sort’s output goes to the screen. And if we run wc -l *.pdb | sort -n | head -n 1, we get three processes with data flowing from the files, through wc to sort, and from sort through head to the screen.
+
+This simple idea is why Unix has been so successful. Instead of creating enormous programs that try to do many different things, Unix programmers focus on creating lots of simple tools that each do one job well, and that work well with each other. This programming model is called “pipes and filters”. We’ve already seen pipes; a filter is a program like wc or sort that transforms a stream of input into a stream of output. Almost all of the standard Unix tools can work this way: unless told to do otherwise, they read from standard input, do something with what they’ve read, and write to standard output.
+
+The key is that any program that reads lines of text from standard input and writes lines of text to standard output can be combined with every other program that behaves this way as well. You can and should write your programs this way so that you and other people can put those programs into pipes to multiply their power.
+
+As well as using > to redirect a program’s output, we can use < to redirect its input, i.e., to read from a file instead of from standard input. For example, instead of writing wc ammonia.pdb, we could write wc < ammonia.pdb. In the first case, wc gets a command line argument telling it what file to open. In the second, wc doesn’t have any command line arguments, so it reads from standard input, but we have told the shell to send the contents of ammonia.pdb to wc’s standard input
+
+cat displays the contents of its inputs.
+
+head displays the first few lines of its input.
+
+tail displays the last few lines of its input.
+
+sort sorts its inputs.
+
+wc counts lines, words, and characters in its inputs.
+
+* matches zero or more characters in a filename, so *.txt matches all files ending in .txt.
+
+? matches any single character in a filename, so ?.txt matches a.txt but not any.txt.
+
+command > file redirects a command’s output to a file.
+
+first | second is a pipeline: the output of the first command is used as the input to the second.
+
+The best way to use the shell is to use pipes to combine simple single-purpose programs (filters).
