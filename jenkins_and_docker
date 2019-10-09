@@ -6,3 +6,9 @@ $ docker push mjamijo/jenkins:tagname
 java -jar jenkins.war --httpPort=8080
 # browse to http://localhost:8080
 
+
+# List images
+docker images -a
+
+#list containers
+docker ps -a

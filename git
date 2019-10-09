@@ -16,14 +16,17 @@ git help <verb>
 # do this to initialize a directory
 git init
 
-# updates local git with changes from remote git 
+# updates local git with changes from remote git
 git pull
+
+# get status
+git status
 
 # adds files to version control
 git add myfile
 
 # commit with notes
-git commit -m 'myfile description'
+git commit -a -m 'myfile description'
 
 # clones the site
 git clone mywebsite
@@ -45,17 +48,13 @@ git remote add <remote name> <remote url>
 git remote -v #shows you the urls
 git remote show origin #origin details
 
-git push <remote_name> <branch> 
+git push <remote_name> <branch>
 git push remote_server commitgit
 
 
-
-
-# git commit 
+# git commit
 git commit -a -m "changed pkamaris password"
-# -a commits all in the current directory 
+# -a commits all in the current directory
 
 
 git checkout -- deploy.php
-
-
