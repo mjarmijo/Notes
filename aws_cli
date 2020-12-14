@@ -1,0 +1,9 @@
+
+
+### S3
+
+-list buckets
+`aws s3 ls`
+
+-copy file from local dir to s3
+`aws s3 cp /path/to/file s3://mybucket`
